@@ -1,0 +1,31 @@
+.orderbook-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.bids-container, .asks-container {
+    width: 50%;
+    padding: 20px;
+}
+
+.bids-table, .asks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bids-table th, .asks-table th,
+.bids-table td, .asks-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.bids-table th, .asks-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.bids-table tr:nth-child(even), .asks-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
