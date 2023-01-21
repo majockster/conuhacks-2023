@@ -1,31 +1,47 @@
 .orderbook-container {
+    height: 100vh; /* take the whole screen */
+    width: 100%; /* take the whole screen */
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 100%;
+    flex-direction: column; /* make it a column */
+    align-items: center; /* center the table */
+    color: #fff; /* text color */
+    font-family: 'Open Sans', sans-serif; /* font family */
 }
 
-.bids-container, .asks-container {
-    width: 50%;
-    padding: 20px;
+h2 {
+    margin-top: 30px; /* add some margin */
+    font-size: 2rem; /* make it big */
+    font-weight: bold; /* make it bold */
 }
 
-.bids-table, .asks-table {
-    width: 100%;
+table {
+    width: 80%; /* take 80% of the screen */
     border-collapse: collapse;
+    margin-top: 20px; /* add some margin */
 }
 
-.bids-table th, .asks-table th,
-.bids-table td, .asks-table td {
-    border: 1px solid #ccc;
+th, td {
+    border: 1px solid #ccc; /* add some border */
     padding: 8px;
+    text-align: center; /* center the text */
 }
 
-.bids-table th, .asks-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+th {
+    background-color: #6c757d; /* background color */
+    color: #fff; /* text color */
+    font-size: 1.2rem; /* make it big */
 }
 
-.bids-table tr:nth-child(even), .asks-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+tr {
+    background-color: #212529; /* background color */
+    color: #fff; /* text color */
+    font-size: 1.2rem; /* make it big */
+}
+
+tr.buy {
+    background-color: #28a745; /* background color */
+}
+
+tr.sell {
+    background-color: #dc3545; /* background color */
 }

@@ -7,15 +7,11 @@ import OrderBook from './components/Orderbook';
 
 const App = () => {
 
-  const [bids, setBids] = useState([
-    { price: 100, quantity: 10 },
-    { price: 90, quantity: 15 },
-    { price: 80, quantity: 20 },
-  ]);
-  const [asks, setAsks] = useState([
-    { price: 110, quantity: 10 },
-    { price: 120, quantity: 15 },
-    { price: 130, quantity: 20 },
+  const [orders, setOrders] = useState([
+    { side: "buy", price: 100, quantity: 10 },
+    { side: "sell", price: 110, quantity: 15 },
+    { side: "buy", price: 90, quantity: 20 },
+    { side: "sell", price: 120, quantity: 25 },
   ]);
 
   const [AequitasInfo, setAequitasInfo] = useState([]);
@@ -56,7 +52,7 @@ const App = () => {
 
   const showAll3 = ()=>{
 
-    setDisplay(<OrderBook bids={bids} asks={asks} />)
+    setDisplay(<OrderBook orders={orders} />)
 
 
   }
