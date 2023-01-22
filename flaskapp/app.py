@@ -69,22 +69,42 @@ def OrderAcknowledged():
 
   import pandas as pd
   df = pd.DataFrame({'Open':[],'High':[],'Low':[],'Close':[]})
+  dictionary = {'Open':[],'High':[],'Low':[],'Close':[]}
   openn = []
   high = []
   low = []
   close = []
+  count = 0
   for pricebin in prices_list:
-    openn.append(pricebin[0])
-    high.append(max(pricebin))
-    low.append(min(pricebin))
-    close.append(pricebin[-1])
+    if pricebin != []:
+      openn.append(pricebin[0])
+      high.append(max(pricebin))
+      low.append(min(pricebin))
+      close.append(pricebin[-1])
+    else:
+      count += 1
+
+  # print(count)
+  dictionary['Open'] = openn
+  dictionary['High'] = high
+  dictionary['Low'] = low
+  dictionary['Close'] = close
 
   df['Open'] = openn
   df['High'] = high
   df['Low'] = low
   df['Close'] = close
 
-  return df
+  import plotly.graph_objects as go
+  fig3 = make_subplots(specs=[[{"secondary_y": True}]])
+  fig3.add_trace(go.Candlestick(x=hist.index,
+                              open=hist['Open'],
+                              high=hist['High'],
+                              low=hist['Low'],
+                              close=hist['Close'],
+                             ))
+
+  # return dictionary
 
   # onesec = list(filter(lambda x: int(x) < int(orderprices_a_timestamps[0])+1000000000,orderprices_a_timestamps))
   # return onesec
