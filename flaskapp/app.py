@@ -95,14 +95,26 @@ def OrderAcknowledged():
   df['Low'] = low
   df['Close'] = close
 
+
+
+  import dash
+  import dash_core_components as dcc
+  import dash_html_components as html
+
   import plotly.graph_objects as go
+
+  app = dash.Dash(__name__)
+
+
   fig3 = make_subplots(specs=[[{"secondary_y": True}]])
-  fig3.add_trace(go.Candlestick(x=hist.index,
-                              open=hist['Open'],
-                              high=hist['High'],
-                              low=hist['Low'],
-                              close=hist['Close'],
-                             ))
+  fig3.add_trace(go.Candlestick(x=df.index,
+                              open=df['Open'],
+                              high=df['High'],
+                              low=df['Low'],
+                              close=df['Close']))
+
+  app.layout = html.Div(figure=fig3)
+
 
   # return dictionary
 
