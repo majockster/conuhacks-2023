@@ -46,11 +46,7 @@ const OrderBook = ({orders,setOrders}) => {
           {orders.map((order) => (
             <tr key={order.Symbol} className={order.MessageType}>
               <td>{order.Symbol}</td>
-              if(order.OrderPrice){
-                <td>{order.OrderPrice}</td>}
-              
-              
-              {/* <td>{order.OrderPrice}</td> */}
+                <td>{order.OrderPrice}</td>
               <td>{order.MessageType}</td>
               <td>{order.Direction}</td>
             </tr>

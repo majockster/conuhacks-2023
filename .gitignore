@@ -4,6 +4,9 @@
 node_modules
 /.pnp
 .pnp.js
+TSXDATA.json
+AequitasData.json
+AlphaData.json
 
 # testing
 /coverage

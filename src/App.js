@@ -4,7 +4,7 @@ import { useState } from 'react'
 import CandleChart from './components/CandleChart'
 import React, { Component }  from 'react';
 import OrderBook from './components/Orderbook';
-// import dataAE from './AequitasData.json'
+import dataAE from './AequitasData.json'
 import dataAl from'./AlphaData.json'
 import dataTsx from './TSXData.json'
 
@@ -32,7 +32,7 @@ const App = () => {
 
   const showAequitas= ()=>{
 
-    setDisplay(<OrderBook orders={dataAl} setOrders={setOrders}/>)
+    setDisplay(<OrderBook orders={dataAE} setOrders={setOrders}/>)
 
   }
 
