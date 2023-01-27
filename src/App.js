@@ -4,8 +4,14 @@ import { useState } from 'react'
 import CandleChart from './components/CandleChart'
 import React, { Component }  from 'react';
 import OrderBook from './components/Orderbook';
+// import dataAE from './AequitasData.json'
+import dataAl from'./AlphaData.json'
+import dataTsx from './TSXData.json'
+
 
 const App = () => {
+
+  const [Display,setDisplay] = useState("hello world")
 
   const [orders, setOrders] = useState([
     { side: "buy", price: 100, quantity: 10 },
@@ -14,16 +20,7 @@ const App = () => {
     { side: "sell", price: 120, quantity: 25 },
   ]);
 
-  const [AequitasInfo, setAequitasInfo] = useState([]);
-  const [AlphaInfo, setAlphaInfo] = useState([]);;
-  const [TsxInfo, setTsxInfo] = useState([]);;
-  const [Display,setDisplay] = useState("");
 
-  const [data, setData] = useState([
-    { date: new Date(), open: 100, high: 110, low: 90, close: 105 },
-    { date: new Date(), open: 110, high: 120, low: 105, close: 115 },
-    // ...
-  ]);
   
   const [config, setConfig] = useState({
     width: 800,
@@ -35,24 +32,24 @@ const App = () => {
 
   const showAequitas= ()=>{
 
-    setDisplay("Aequitas info")
+    setDisplay(<OrderBook orders={dataAl} setOrders={setOrders}/>)
 
   }
 
   const showAlpha = ()=>{
 
-    setDisplay("Alpha info")
+    setDisplay(<OrderBook orders={dataAl} setOrders={setOrders}/>)
   }
 
   const showTsx= ()=>{
 
-    setDisplay("Txs info")
+    setDisplay(<OrderBook orders={dataTsx} setOrders={setOrders}/>)
 
   }
 
   const showAll3 = ()=>{
 
-    setDisplay(<OrderBook orders={orders} />)
+  
 
 
   }

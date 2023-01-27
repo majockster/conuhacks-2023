@@ -1,31 +1,58 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import '/Users/bassam/Desktop/myprojects/phonebookBackend/conuhacks-2023/src/Orderbook.css';
 
-const OrderBook = () => {
-  const [orders, setOrders] = useState([
-    { side: "buy", price: 100, quantity: 10 },
-    { side: "sell", price: 110, quantity: 15 },
-    { side: "buy", price: 90, quantity: 20 },
-    { side: "sell", price: 120, quantity: 25 },
-  ]);
+const OrderBook = ({orders,setOrders}) => {
+
+  const data = orders
+
+
+  useEffect(() => {
+    let intervalId = null;
+    const totalData = data.length;
+    const totalDuration = 4 * 60 * 1000; // 4 minutes in milliseconds
+    const dataPerInterval = totalData / totalDuration;
+    let currentData = 0;
+
+    intervalId = setInterval(() => {
+        if (currentData < totalData) {
+            setOrders(prevItems => prevItems.concat(data[currentData]));
+            currentData += 1;
+        } else {
+            clearInterval(intervalId);
+        }
+    }, totalDuration / totalData);
+    return () => clearInterval(intervalId);
+}, []);
+
+
+  useEffect(() => {
+    setOrders(orders);
+}, []);
+
 
   return (
-    <div className='orderbook-container'>
+    <div style={{ overflow: "auto", maxHeight: "500px" }} className='orderbook-container'>
       <h2>Orders</h2>
       <table className='orders-table'>
         <thead>
           <tr>
-            <th>Side</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th>Symbol</th>
+            <th>OrderPrice</th>
+            <th>MessageTyoe</th>
+            <th>Direction</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr key={order.price} className={order.side}>
-              <td>{order.side}</td>
-              <td>{order.price}</td>
-              <td>{order.quantity}</td>
+            <tr key={order.Symbol} className={order.MessageType}>
+              <td>{order.Symbol}</td>
+              if(order.OrderPrice){
+                <td>{order.OrderPrice}</td>}
+              
+              
+              {/* <td>{order.OrderPrice}</td> */}
+              <td>{order.MessageType}</td>
+              <td>{order.Direction}</td>
             </tr>
           ))}
         </tbody>
