@@ -1,12 +1,10 @@
 import StockHeader from './components/Header'
 import ActionButton from './components/Button'
 import { useState,useEffect } from 'react'
-import CandleChart from './components/CandleChart'
 import React, { Component }  from 'react';
 import OrderBook from './components/Orderbook';
-import dataAE from './AequitasData.json'
-import dataAl from'./AlphaData.json'
-import dataTsx from './TSXData.json'
+import axios from 'axios'
+import { response } from 'express';
 
 
 const App = () => {
@@ -19,21 +17,24 @@ const App = () => {
 
 
   useEffect(() => {
-    fetch('/aequitas')
-      .then(response => response.json())
-      .then(orders => setOrders1(orders))
+    axios.get('http://localhost:8000/aequitas')
+    .then(response=>{
+      setOrders1(response.data)
+    })
   }, []);
 
   useEffect(() => {
-    fetch('/alpha')
-      .then(response => response.json())
-      .then(orders => setOrders2(orders))
+    axios.get('http://localhost:8000/alpha')
+    .then(response=>{
+      setOrders2(response.data)
+    })
   }, []);
 
   useEffect(() => {
-    fetch('/tsx')
-      .then(response => response.json())
-      .then(orders => setOrders3(orders))
+    axios.get('http://localhost:8000/tsx')
+    .then(response=>{
+      setOrders3(response.data)
+    })
   }, []);
 
 
