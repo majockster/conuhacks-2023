@@ -1,6 +1,6 @@
 import StockHeader from './components/Header'
 import ActionButton from './components/Button'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import CandleChart from './components/CandleChart'
 import React, { Component }  from 'react';
 import OrderBook from './components/Orderbook';
@@ -13,37 +13,45 @@ const App = () => {
 
   const [Display,setDisplay] = useState("hello world")
 
-  const [orders, setOrders] = useState([
-    { side: "buy", price: 100, quantity: 10 },
-    { side: "sell", price: 110, quantity: 15 },
-    { side: "buy", price: 90, quantity: 20 },
-    { side: "sell", price: 120, quantity: 25 },
-  ]);
+  const [orders1, setOrders1] = useState([]);
+  const [orders2, setOrders2] = useState([]);
+  const [orders3, setOrders3] = useState([]);
 
 
-  
-  const [config, setConfig] = useState({
-    width: 800,
-    height: 600,
-    type: "hybrid"
-  });
+  useEffect(() => {
+    fetch('/aequitas')
+      .then(response => response.json())
+      .then(orders => setOrders1(orders))
+  }, []);
+
+  useEffect(() => {
+    fetch('/alpha')
+      .then(response => response.json())
+      .then(orders => setOrders2(orders))
+  }, []);
+
+  useEffect(() => {
+    fetch('/tsx')
+      .then(response => response.json())
+      .then(orders => setOrders3(orders))
+  }, []);
 
 
 
   const showAequitas= ()=>{
 
-    setDisplay(<OrderBook orders={dataAE} setOrders={setOrders}/>)
+    setDisplay(<OrderBook orders={orders1} setOrders={setOrders1}/>)
 
   }
 
   const showAlpha = ()=>{
 
-    setDisplay(<OrderBook orders={dataAl} setOrders={setOrders}/>)
+    setDisplay(<OrderBook orders={orders2} setOrders={setOrders2}/>)
   }
 
   const showTsx= ()=>{
 
-    setDisplay(<OrderBook orders={dataTsx} setOrders={setOrders}/>)
+    setDisplay(<OrderBook orders={orders3} setOrders={setOrders3}/>)
 
   }
 
